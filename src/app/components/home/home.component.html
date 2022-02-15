@@ -1,0 +1,21 @@
+<div>
+  <mat-accordion *ngIf="launches; else loading">
+    <mat-expansion-panel *ngFor="let launch of launches; let i = index" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Launch #{{i + 1}} </mat-panel-title>
+        <mat-panel-description>
+          {{ launch.mission_name }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{ launch.details }}</p>
+      <mat-action-row>
+          <button mat-raised-button color="accent" (click)="viewDetails(launch.flight_number)">
+            Details
+          </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</div>

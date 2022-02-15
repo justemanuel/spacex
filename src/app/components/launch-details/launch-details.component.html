@@ -1,0 +1,29 @@
+<div *ngIf="launch; else loading">
+    <div class="header-buttons">
+        <button mat-raised-button color="primary" routerLink="/home">
+            <mat-icon>arrow_circle_left</mat-icon>&nbsp;
+            BACK
+        </button>
+        <button mat-raised-button color="accent" (click)="onFav(launch.flight_number)">
+            <mat-icon>{{ isFav ? 'favorite' : 'favorite_border' }}</mat-icon>&nbsp;
+            {{ isFav ? 'REMOVE FROM FAVORITES' : 'ADD TO FAVORITES'}}
+        </button>
+    </div>
+    <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+          <mat-card-subtitle>Flight number #{{ launch.flight_number }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://www.openaccessgovernment.org/wp-content/uploads/2020/12/dreamstime_xxl_171405218.jpg" alt="Photo of a Rocket">
+        <mat-card-content>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate iste corrupti perferendis nobis sapiente sit ex at dignissimos.
+            Tenetur maxime dolores excepturi dignissimos unde voluptate. Quaerat dolorem omnis possimus molestias!
+          </p>
+        </mat-card-content>
+      </mat-card>
+</div>
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

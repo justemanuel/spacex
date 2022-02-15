@@ -1,0 +1,16 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://www.starlink.com/assets/images/social/share.jpg");
+  //background-image: url();
+  background-size: cover;
+}
+
+.header-buttons {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
