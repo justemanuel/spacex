@@ -6,3 +6,17 @@ table {
   font-size: 1.2em;
   font-weight: 500;
 }
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-expansion-panel-header-description .mat-icon {
+  color: tomato;
+}

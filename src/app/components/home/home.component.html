@@ -1,10 +1,11 @@
 <div>
-  <mat-accordion *ngIf="launches; else loading">
+  <mat-accordion *ngIf="launches; else loading" class="example-headers-align">
     <mat-expansion-panel *ngFor="let launch of launches; let i = index" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title> Launch #{{i + 1}} </mat-panel-title>
         <mat-panel-description>
           {{ launch.mission_name }}
+          <mat-icon *ngIf="isFav(launch.flight_number)" (click)="fav(launch.flight_number)">favorite</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p>{{ launch.details }}</p>

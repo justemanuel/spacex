@@ -32,5 +32,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/launch-details/' + launchId]);
   }
 
+  isFav(flight_number: any): boolean {
+    return this.spacexService.isFav(flight_number);
+  }
+
+  fav(flight_number: any): void {
+    this.spacexService.onFav(flight_number);
+  }
+
 }
 

@@ -1,13 +1,21 @@
 <div *ngIf="launch; else loading">
     <div class="header-buttons">
-        <button mat-raised-button color="primary" routerLink="/home">
-            <mat-icon>arrow_circle_left</mat-icon>&nbsp;
-            BACK
-        </button>
-        <button mat-raised-button color="accent" (click)="onFav(launch.flight_number)">
-            <mat-icon>{{ isFav ? 'favorite' : 'favorite_border' }}</mat-icon>&nbsp;
-            {{ isFav ? 'REMOVE FROM FAVORITES' : 'ADD TO FAVORITES'}}
-        </button>
+      <!-- <button class="button-back" routerLink="/home">
+        <mat-icon>arrow_circle_left</mat-icon>&nbsp;
+        <span>back</span>
+      </button>
+      <button class="button-fav" (click)="onFav(launch.flight_number)">
+        <mat-icon>favorite</mat-icon>&nbsp;
+        <span>favorite</span>
+      </button> -->
+      <button mat-raised-button color="primary" routerLink="/home">
+          <mat-icon>arrow_circle_left</mat-icon>&nbsp;
+          BACK
+      </button>
+      <button mat-raised-button color="accent" (click)="onFav(launch.flight_number)">
+          <mat-icon>{{ isFav ? 'favorite' : 'favorite_border' }}</mat-icon>&nbsp;
+          {{ isFav ? 'REMOVE FROM FAVORITES' : 'ADD TO FAVORITES'}}
+      </button>
     </div>
     <mat-card class="example-card">
         <mat-card-header>
