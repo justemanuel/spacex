@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime, filter, map, tap } from 'rxjs/operators';
 import { SpacexService } from 'src/app/services/spacex.service';
 
 @Component({
@@ -8,21 +10,41 @@ import { SpacexService } from 'src/app/services/spacex.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  
   tableColumns: string[] = ['']
   launches: any[];
+  allLaunches: any[];
+  searchControl: FormControl;
 
-  constructor(private spacexService: SpacexService, private router: Router) { }
+  constructor(private spacexService: SpacexService, private router: Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loadRockets();
+    this.searchControl = new FormControl('');
+    this.searchControl.valueChanges.pipe(
+      map((value) => { return value }),
+      //filter((value: string) => value.length > ),
+      debounceTime(500)
+    ).subscribe((missionName: string) => {
+      console.log(missionName)
+      if (missionName.length > 0) {
+        this.launches = this.allLaunches.filter(l => 
+          l.mission_name.toLocaleLowerCase().indexOf(missionName.toLocaleLowerCase()) !== -1
+        );
+      }
+      else {
+        this.launches = this.allLaunches;
+      }
+      console.log(this.launches);
+      this.cd.markForCheck();
+    });
   }
 
   private loadRockets(): void {
     this.spacexService.getLaunches()
     .subscribe(launches => {
-      this.launches = launches;
-      console.log(this.launches);
+      this.allLaunches = launches;
+      this.launches = this.allLaunches;
     })
   }
 
